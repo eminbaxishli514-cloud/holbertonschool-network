@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
-# Script to display listening TCP/UDP ports with PID/program
+# 4-TCP_and_UDP_ports
 
-sudo netstat -tulpn
+# Display active Internet connections (only servers)
+echo "Active Internet connections (only servers)"
+sudo netstat -tulpn | grep -E "Proto|LISTEN"
+
+# Display active UNIX domain sockets (only servers)
+echo "Active UNIX domain sockets (only servers)"
+sudo netstat -lxpn | grep -E "Proto|LISTEN"
