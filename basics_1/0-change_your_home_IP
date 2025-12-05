@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 # 0-change_your_home_IP
 
-# Check if running as root
+# Make sure we run as root
 if [[ $EUID -ne 0 ]]; then
-    echo "Please run as root"
-    exit 1
+   echo "Please run as root" 
+   exit 1
 fi
 
-# Backup /etc/hosts
+# Backup /etc/hosts first
 cp /etc/hosts /etc/hosts.bak
 
-# Append new entries without deleting anything (avoids sed errors)
+# Remove existing localhost lines
+sed -i '/127\.0\.0\.1\s\+localhost/d' /etc/hosts
+sed -i '/127\.0\.0\.2\s\+localhost/d' /etc/hosts
+
+# Add the required entries
 echo "127.0.0.2 localhost" >> /etc/hosts
 echo "8.8.8.8 facebook.com" >> /etc/hosts
