@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 5-is_the_host_on_the_network
 
 # Check if an argument (IP address) is provided
